@@ -9,41 +9,42 @@ export function CardApi() {
   const [character, setCharacter] = useState([]);
   const [page, setPage] = useState(1);
 
-  const FetchApi = async function FetchApi(page) {
+  const FetchApi = async function FetchApi() {
+    if (page => 1 && page <= 42) {
       try {
+        console.log(page)
         let arr = [];
         const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`);
-        const character = await response.json();
-        character.results.map((data) => {
+        const data = await response.json();
+        data.results.map((data) => {
           arr.push(data);
         })
-       return setCharacter(arr)
+        setCharacter(arr)
       } catch (err) {
         console.log(err);
       }
+    }
   };
 
-  useEffect(async () => {
-    await FetchApi(page);
-  }, []);
-  
+  useEffect(() => { FetchApi() }, [page])
+
   return (
     <div className="home">
-               <div className="container">
-            <div className='pagination' style={{ display: 'block', width: 700, padding: 30 }}>
-               <Pagination>
-                  <Pagination.Prev onClick={() => {
-                     setPage(page - 1);
-                  }} />
-                  <Pagination.Ellipsis />
-                  <Pagination.Item>{page}</Pagination.Item>
-                  <Pagination.Ellipsis />
-                  <Pagination.Next onClick={() => {
-                     setPage(page + 1);
-                  }} />
-               </Pagination>
-            </div>
-         </div>
+      <div className="container">
+        <div className='pagination' style={{ display: 'block', width: 700, padding: 30 }}>
+          <Pagination>
+            <Pagination.Prev onClick={() => {
+              setPage(page - 1);
+            }} />
+            <Pagination.Ellipsis />
+            <Pagination.Item>{page}</Pagination.Item>
+            <Pagination.Ellipsis />
+            <Pagination.Next onClick={() => {
+              setPage(page + 1);
+            }} />
+          </Pagination>
+        </div>
+      </div>
       {
         character.map((data) => {
           return (
