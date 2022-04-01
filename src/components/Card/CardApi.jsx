@@ -8,22 +8,26 @@ import "./Card.css";
 export function CardApi() {
   const [character, setCharacter] = useState([]);
   const [page, setPage] = useState(1);
+  const [disabled, setDisabled] = useState(false);
 
   const FetchApi = async function FetchApi() {
+    
     if (page => 1 && page <= 42) {
       try {
-        console.log(page)
+        setDisabled(true);
         let arr = [];
         const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`);
         const data = await response.json();
         data.results.map((data) => {
-          arr.push(data);
+        arr.push(data);
         })
         setCharacter(arr)
+        setDisabled(false);
       } catch (err) {
         console.log(err);
       }
     }
+    
   };
 
   useEffect(() => { FetchApi() }, [page])
@@ -34,14 +38,18 @@ export function CardApi() {
         <div className='pagination' style={{ display: 'block', width: 700, padding: 30 }}>
           <Pagination>
             <Pagination.Prev onClick={() => {
-              setPage(page - 1);
-            }} />
+              if (page > 1) {
+                setPage(page - 1);
+              }
+            }} disabled={disabled} />
             <Pagination.Ellipsis />
             <Pagination.Item>{page}</Pagination.Item>
             <Pagination.Ellipsis />
             <Pagination.Next onClick={() => {
-              setPage(page + 1);
-            }} />
+              if (page < 42) {
+                setPage(page + 1);
+              }
+            }} disabled={disabled} />
           </Pagination>
         </div>
       </div>
@@ -51,29 +59,26 @@ export function CardApi() {
             <Card key={`${data.id}`} className="nes-text character is-disabled" >
               <Card.Title className="nes-text ">{`${data.name}`}</Card.Title>
               <Card.Img variant="top" src={`${data.image}`} />
-              <Card.Body className="info nes-text">
-                <ListGroup className="list-group-flush nes-text">
-                  <ListGroup.Item>{`${data.gender}`}</ListGroup.Item>
-                  <ListGroup.Item>{`${data.species}`}</ListGroup.Item>
-                  <ListGroup.Item>{`${data.location.name}`}</ListGroup.Item>
+              <Card.Body className="info ">
+                <ListGroup>
+                  <ListGroup.Item variant="dark">Gender:{`${data.gender}`}</ListGroup.Item>
+                  <ListGroup.Item variant="dark">Type:{`${data.species}`}</ListGroup.Item>
+                  <ListGroup.Item variant="dark">Location:{`${data.location.name}`}</ListGroup.Item>
                 </ListGroup>
               </Card.Body>
               <Card.Footer>
                 {
                   (() => {
-
                     if (data.status === "Alive") {
                       return (
                         <small className="nes-text is-success">alive</small>
                       )
                     }
-
                     else if (data.status === "Dead") {
                       return (
                         <small className="nes-text is-error">dead</small>
                       )
                     }
-
                     else {
                       return (
                         <small className="nes-text is-disabled">unknow</small>

@@ -12,7 +12,7 @@ body{
 
 .character{
     width: 400px;
-    height: 600px;
+    height: 800px;
     flex: 25%;
     padding: 5px;
     background: rgb(60, 62, 68) !important;
@@ -39,9 +39,6 @@ object-fit: cover;
     padding: 0.75rem;
     display: flex;
     flex-direction: column;
-
-}
-
-.list-group{
-background-color: dark !important;
+    background-color: none;
+    color: aliceblue;
 }
