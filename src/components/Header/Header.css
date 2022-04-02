@@ -3,8 +3,10 @@ height:40vh;
 width:100vw;
 font-family: 'Press Start 2P', cursive;
 background-color:white;
+
 }
 
 .nes-container {
 border:none !important;
+width:100%;
 }

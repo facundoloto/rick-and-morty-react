@@ -7,7 +7,5 @@ export function Header() {
         <div class="nes-container is-centered header">
             <h1 class="title text-center">The Rick and Morty API</h1>
         </div>
-
-
     );
 };
