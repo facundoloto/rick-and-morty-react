@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Card, ListGroup, Pagination } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "nes.css/css/nes.min.css";
-import "./Card.css";
+import "./CardApi.css";
 
 export function CardApi() {
   const [character, setCharacter] = useState([]);
@@ -20,8 +20,8 @@ export function CardApi() {
         const data = await response.json();
         data.results.map((data) => {
           arr.push(data);
-        })
-        setCharacter(arr)
+        });
+        setCharacter(arr);
         setDisabled(false);
       } catch (err) {
         alert(err);
@@ -35,7 +35,7 @@ export function CardApi() {
   return (
     <div className="home">
       <div className="container">
-        <div className='pagination' style={{ display: 'block', width: 700, padding: 30 }}>
+        <div className='pagination'>
           <Pagination>
             <Pagination.Prev onClick={() => {
               if (page > 1) {
@@ -50,7 +50,8 @@ export function CardApi() {
               if (page < 42) {
                 setPage(page + 1);
               }
-            }} disabled={disabled}
+            }
+            } disabled={disabled}
             />
           </Pagination>
         </div>

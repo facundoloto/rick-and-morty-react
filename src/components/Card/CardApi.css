@@ -16,6 +16,9 @@ body {
   align-items: center;
   margin: 0 auto;
   overflow: hidden;
+  width:100%;
+  margin-top:1em;
+  margin-bottom:2em;
 }
 
 .container-card {
@@ -26,7 +29,6 @@ body {
     grid-gap: 1rem;
     width:50%;
     place-content: center;
-    
 }
 
 .character {
@@ -56,4 +58,20 @@ body {
   flex-direction: column;
   background-color: none;
   color: aliceblue;
+}
+
+@media (max-width: 800px) {
+
+  .container-card {
+    width: 80%;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    margin-bottom:50%;
+  }
+  .character {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1em;
+  }
 }
