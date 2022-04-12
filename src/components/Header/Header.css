@@ -9,3 +9,10 @@ background-color:white;
 border:none !important;
 width:100%;
 }
+
+@media (max-width: 800px) {
+.header {
+height:25vh;
+}
+}
+

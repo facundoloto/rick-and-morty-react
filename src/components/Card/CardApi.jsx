@@ -10,8 +10,21 @@ export function CardApi() {
   const [page, setPage] = useState(1);
   const [disabled, setDisabled] = useState(false);
 
-  const FetchApi = async function FetchApi() {
+  const pagesPrev = () => {
+    if (page > 1) {
+      setPage(page - 1);
+      window.scrollTo(0, 0);
+    }
+  };
 
+const pagesNext =  () => {
+    if (page < 42) {
+      setPage(page + 1);
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const FetchApi = async function FetchApi() {
     if (page => 1 && page <= 42) {
       try {
         setDisabled(true);
@@ -27,8 +40,7 @@ export function CardApi() {
         alert(err);
       }
     }
-
-  };
+};
 
   useEffect(() => { FetchApi() }, [page])
 
@@ -37,22 +49,9 @@ export function CardApi() {
       <div className="container">
         <div className='pagination'>
           <Pagination>
-            <Pagination.Prev onClick={() => {
-              if (page > 1) {
-                setPage(page - 1);
-              }
-            }} disabled={disabled}
-            />
-            <Pagination.Ellipsis />
+            <Pagination.Prev onClick={pagesPrev} disabled={disabled} />
             <Pagination.Item>{page}</Pagination.Item>
-            <Pagination.Ellipsis />
-            <Pagination.Next onClick={() => {
-              if (page < 42) {
-                setPage(page + 1);
-              }
-            }
-            } disabled={disabled}
-            />
+            <Pagination.Next onClick={pagesNext} disabled={disabled} />
           </Pagination>
         </div>
       </div>
@@ -94,7 +93,14 @@ export function CardApi() {
               </Card>
             )
           })
-        };
+        }
+      </div>
+      <div className='pagination'>
+        <Pagination>
+          <Pagination.Prev onClick={pagesPrev} disabled={disabled} />
+          <Pagination.Item>{page}</Pagination.Item>
+          <Pagination.Next onClick={pagesNext} disabled={disabled} />
+        </Pagination>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { Navbar, Container} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "nes.css/css/nes.min.css";
 import "./Nav.css";
-import Logo from './icono.png';
+import Logo from './logo.png';
 
 export function Nav() {
     return (

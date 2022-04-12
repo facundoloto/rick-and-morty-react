@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Header } from '../Header/Header.jsx';
 import { Nav } from '../Nav/Nav.jsx';
 import { CardApi } from '../Card/CardApi.jsx';
+import { Footer } from '../Footer/Footer.jsx';
 import './Home.css';
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
          <Nav />
          <Header />
          <CardApi />
+         <Footer />
       </>
    )
 };
