@@ -12,10 +12,10 @@ export function Footer() {
           <span>Facundo Loto</span>
         </div>
         <div>
-          <CLink href="https://coreui.io">GitHub</CLink>
+          <CLink href="https://github.com/facundoloto/rick-and-morty-react">GitHub</CLink>
         </div>
         <div>
-          <CLink href="https://coreui.io">Linkedin</CLink>
+          <CLink href="https://www.linkedin.com/in/facundo-emanuel-loto-496384177/">Linkedin</CLink>
         </div>
       </CFooter>
     </div>
